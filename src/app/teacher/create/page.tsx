@@ -1,3 +1,4 @@
+import CreateTeacherForm from "@/components/Forms/CreateTeacherForm";
 import {
 	Card,
 	CardContent,
@@ -21,7 +22,9 @@ const page = () => {
 					</CardTitle>
 				</CardHeader>
 
-				<CardContent></CardContent>
+				<CardContent>
+					<CreateTeacherForm />
+				</CardContent>
 			</Card>
 		</section>
 	);
