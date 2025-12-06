@@ -1,6 +1,7 @@
 "use client";
 
 import { teacherFormSchema, TeacherFormType } from "@/lib/zodSchema";
+import createTeacherAction from "@/server/createTeacherAction";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon, SendIcon } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
@@ -13,6 +14,7 @@ const CreateTeacherForm = () => {
 	const {
 		handleSubmit,
 		control,
+		reset,
 		formState: { isSubmitting },
 	} = useForm({
 		resolver: zodResolver(teacherFormSchema),
@@ -26,11 +28,14 @@ const CreateTeacherForm = () => {
 	const createTeacherFormSubmitHandle = async (ctFormData: TeacherFormType) => {
 		await new Promise<void>((r) => setTimeout(r, 1500));
 
-		console.log("====================================");
-		console.log(ctFormData);
-		console.log("====================================");
+		const { issuccess, message } = await createTeacherAction(ctFormData);
 
-		toast.success("Form Submitted Successfully");
+		if (issuccess) {
+			toast.success(message);
+			reset();
+		} else {
+			toast.error(message);
+		}
 	};
 
 	return (
