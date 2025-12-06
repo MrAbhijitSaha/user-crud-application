@@ -22,7 +22,7 @@ const page = () => {
 					</CardTitle>
 				</CardHeader>
 
-				<CardContent>
+				<CardContent className="space-y-8">
 					<CreateTeacherForm />
 				</CardContent>
 			</Card>
