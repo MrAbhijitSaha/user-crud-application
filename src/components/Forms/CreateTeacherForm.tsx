@@ -13,7 +13,7 @@ import { Field, FieldError, FieldLabel } from "../shadcnui/field";
 import { Input } from "../shadcnui/input";
 
 const CreateTeacherForm = () => {
-	const [isLoding, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const {
 		handleSubmit,
@@ -44,7 +44,7 @@ const CreateTeacherForm = () => {
 		}
 	};
 
-	const techerDetailsGenerator = async () => {
+	const teacherDetailsGenerator = async () => {
 		setIsLoading(true);
 
 		await new Promise<void>((r) => setTimeout(r, 1500));
@@ -119,10 +119,10 @@ const CreateTeacherForm = () => {
 
 			<Button
 				className="w-full cursor-pointer"
-				onClick={techerDetailsGenerator}
+				onClick={teacherDetailsGenerator}
 				type="button"
-				disabled={isLoding}>
-				{isLoding ? (
+				disabled={isLoading}>
+				{isLoading ? (
 					<>
 						<Loader2Icon className="animate-spin" /> Generating..
 					</>
