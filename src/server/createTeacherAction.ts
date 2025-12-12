@@ -13,15 +13,15 @@ const createTeacherAction = async (ctFormData: TeacherFormType) => {
 		revalidatePath("/student/create");
 
 		return {
-			issuccess: true,
+			isSuccess: true,
 			message: "Teacher created successfully",
 		};
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 
 		return {
-			issuccess: false,
-			message: "Teacher creation faild",
+			isSuccess: false,
+			message: "Teacher creation failed",
 		};
 	}
 };

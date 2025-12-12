@@ -34,9 +34,9 @@ const CreateTeacherForm = () => {
 	const createTeacherFormSubmitHandle = async (ctFormData: TeacherFormType) => {
 		await new Promise<void>((r) => setTimeout(r, 1500));
 
-		const { issuccess, message } = await createTeacherAction(ctFormData);
+		const { isSuccess, message } = await createTeacherAction(ctFormData);
 
-		if (issuccess) {
+		if (isSuccess) {
 			toast.success(message);
 			reset();
 		} else {
