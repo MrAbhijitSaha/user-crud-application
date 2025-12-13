@@ -1,9 +1,11 @@
 "use client";
 
 import { studentFormSchema, StudentFormType } from "@/lib/zodSchema";
+import createStudentAction from "@/server/createStudentAction";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2Icon, SendIcon } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { Teacher } from "../../../generated/prisma/client";
 import { Button } from "../shadcnui/button";
 import { Field, FieldError, FieldLabel } from "../shadcnui/field";
@@ -27,6 +29,7 @@ const CreateStudentForm = ({ tData }: CreateStudentFormProps) => {
 		formState: { isSubmitting },
 		setValue,
 		clearErrors,
+		reset,
 	} = useForm({
 		resolver: zodResolver(studentFormSchema),
 		defaultValues: {
@@ -40,7 +43,16 @@ const CreateStudentForm = ({ tData }: CreateStudentFormProps) => {
 	});
 
 	const createStudentFormSubmitHandle = async (fData: StudentFormType) => {
-		console.log(fData);
+		await new Promise<void>((r) => setTimeout(r, 1500));
+
+		const { isSuccess, message } = await createStudentAction(fData);
+
+		if (isSuccess) {
+			toast.success(message);
+			reset();
+		} else {
+			toast.error(message);
+		}
 	};
 
 	return (

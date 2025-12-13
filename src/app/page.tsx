@@ -1,3 +1,4 @@
+import prisma from "@/lib/database/dbClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,7 +6,15 @@ export const metadata: Metadata = {
 	description: "Production grade Fullstack Next.js starter template",
 };
 
-const page = () => {
+const page = async () => {
+	const sData = await prisma.student.findMany({
+		include: {
+			teacher: true,
+		},
+	});
+
+	console.log(sData);
+
 	return (
 		<section className="grid h-[90dvh] place-items-center">
 			<div className="space-y-2 text-center">
