@@ -2,6 +2,7 @@ import { MarsIcon, PencilIcon, TransgenderIcon, VenusIcon } from "lucide-react";
 import Link from "next/link";
 
 import type { DisplayStudentCard } from "@/lib/zodSchema";
+import DeleteStudentBtn from "../DeleteStudentBtn";
 import { Avatar, AvatarFallback } from "../shadcnui/avatar";
 import { Badge } from "../shadcnui/badge";
 import { Button } from "../shadcnui/button";
@@ -12,16 +13,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../shadcnui/card";
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from "../shadcnui/dialog";
 
 type DisplayStudentCardPropsType = {
 	data: DisplayStudentCard;
@@ -83,27 +74,8 @@ const DisplayStudentCard = ({ data }: DisplayStudentCardPropsType) => {
 						Edit
 					</Link>
 				</Button>
-				<Dialog>
-					<DialogTrigger asChild>
-						<Button variant="destructive">Delete</Button>
-					</DialogTrigger>
 
-					<DialogContent>
-						<DialogHeader>
-							<DialogTitle>Are you absolutely sure?</DialogTitle>
-							<DialogDescription>
-								Once you delete this, it cannot be undone.
-							</DialogDescription>
-						</DialogHeader>
-
-						<DialogFooter>
-							<DialogClose asChild>
-								<Button variant="outline">Cancel</Button>
-							</DialogClose>
-							<Button variant="destructive">Delete</Button>
-						</DialogFooter>
-					</DialogContent>
-				</Dialog>
+				<DeleteStudentBtn id={data.id}/>
 			</CardFooter>
 		</Card>
 	);
