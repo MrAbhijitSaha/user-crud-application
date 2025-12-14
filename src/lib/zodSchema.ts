@@ -11,13 +11,22 @@ export const studentFormSchema = z.object({
 	gender: z.string().min(4, "Select Your Gender"),
 	email: z.email("Invalid Email Address"),
 	teacherId: z.string().min(1, "Teacher is required"),
-	// teacher: z.object({
-	// 	id: z.string(),
-	// 	firstName: z.string(),
-	// 	lastName: z.string(),
-	// }),
 });
 
 export type TeacherFormType = z.infer<typeof teacherFormSchema>;
 
 export type StudentFormType = z.infer<typeof studentFormSchema>;
+
+export type DisplayStudentCard = {
+	id: string;
+	firstName: string;
+	lastName: string;
+	gender: string;
+	email: string;
+	teacherId: string;
+	teacher: {
+		id: string;
+		firstName: string;
+		lastName: string;
+	};
+};

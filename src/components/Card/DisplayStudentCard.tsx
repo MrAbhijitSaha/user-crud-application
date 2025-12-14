@@ -1,6 +1,7 @@
 import { MarsIcon, PencilIcon, TransgenderIcon, VenusIcon } from "lucide-react";
 import Link from "next/link";
-import { Student } from "../../../generated/prisma/client";
+
+import type { DisplayStudentCard } from "@/lib/zodSchema";
 import { Avatar, AvatarFallback } from "../shadcnui/avatar";
 import { Badge } from "../shadcnui/badge";
 import { Button } from "../shadcnui/button";
@@ -11,12 +12,22 @@ import {
 	CardHeader,
 	CardTitle,
 } from "../shadcnui/card";
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "../shadcnui/dialog";
 
-type DisplayStudentCardProps = {
-	data: Student;
+type DisplayStudentCardPropsType = {
+	data: DisplayStudentCard;
 };
 
-const DisplayStudentCard = ({ data }: DisplayStudentCardProps) => {
+const DisplayStudentCard = ({ data }: DisplayStudentCardPropsType) => {
 	console.log(data);
 
 	const initials = `${data.firstName[0]}${data.lastName[0]}`;
@@ -58,27 +69,41 @@ const DisplayStudentCard = ({ data }: DisplayStudentCardProps) => {
 				<div>
 					<span className="font-medium">Teacher: </span>
 					<span className="text-muted-foreground">
-						{/* {data.teacher.firstName} {data.teacher.lastName} */}
-						{data.teacherId}
+						{data.teacher.firstName} {data.teacher.lastName}
+						{/* {data.teacherId} */}
 					</span>
 				</div>
 			</CardContent>
 
 			{/* Actions */}
 			<CardFooter className="flex justify-end gap-2">
-				<Button
-					asChild
-					className="w-full cursor-pointer bg-blue-500 text-white hover:bg-blue-600 md:w-auto">
+				<Button asChild>
 					<Link href={`/update/${data.id}`}>
 						<PencilIcon />
 						Edit
 					</Link>
 				</Button>
-				<Button
-					variant="destructive"
-					size="sm">
-					Delete
-				</Button>
+				<Dialog>
+					<DialogTrigger asChild>
+						<Button variant="destructive">Delete</Button>
+					</DialogTrigger>
+
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>Are you absolutely sure?</DialogTitle>
+							<DialogDescription>
+								Once you delete this, it cannot be undone.
+							</DialogDescription>
+						</DialogHeader>
+
+						<DialogFooter>
+							<DialogClose asChild>
+								<Button variant="outline">Cancel</Button>
+							</DialogClose>
+							<Button variant="destructive">Delete</Button>
+						</DialogFooter>
+					</DialogContent>
+				</Dialog>
 			</CardFooter>
 		</Card>
 	);
