@@ -1,5 +1,6 @@
-import { StudentFormType } from "@/lib/zodSchema";
-import { MarsIcon, TransgenderIcon, VenusIcon } from "lucide-react";
+import { MarsIcon, PencilIcon, TransgenderIcon, VenusIcon } from "lucide-react";
+import Link from "next/link";
+import { Student } from "../../../generated/prisma/client";
 import { Avatar, AvatarFallback } from "../shadcnui/avatar";
 import { Badge } from "../shadcnui/badge";
 import { Button } from "../shadcnui/button";
@@ -12,7 +13,7 @@ import {
 } from "../shadcnui/card";
 
 type DisplayStudentCardProps = {
-	data: StudentFormType;
+	data: Student;
 };
 
 const DisplayStudentCard = ({ data }: DisplayStudentCardProps) => {
@@ -66,9 +67,12 @@ const DisplayStudentCard = ({ data }: DisplayStudentCardProps) => {
 			{/* Actions */}
 			<CardFooter className="flex justify-end gap-2">
 				<Button
-					variant="outline"
-					size="sm">
-					Edit
+					asChild
+					className="w-full cursor-pointer bg-blue-500 text-white hover:bg-blue-600 md:w-auto">
+					<Link href={`/update/${data.id}`}>
+						<PencilIcon />
+						Edit
+					</Link>
 				</Button>
 				<Button
 					variant="destructive"
