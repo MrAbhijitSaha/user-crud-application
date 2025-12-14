@@ -1,4 +1,5 @@
 "use server";
+
 import prisma from "@/lib/database/dbClient";
 import { StudentFormType } from "@/lib/zodSchema";
 import { revalidatePath } from "next/cache";

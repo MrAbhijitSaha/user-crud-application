@@ -10,7 +10,12 @@ export const studentFormSchema = z.object({
 	lastName: z.string().min(3, "Last Name must be more that 3 characters!"),
 	gender: z.string().min(4, "Select Your Gender"),
 	email: z.email("Invalid Email Address"),
-	teacherId: z.string().min(1, "Select Your Teacher"),
+	teacherId: z.string().min(1, "Teacher is required"),
+	// teacher: z.object({
+	// 	id: z.string(),
+	// 	firstName: z.string(),
+	// 	lastName: z.string(),
+	// }),
 });
 
 export type TeacherFormType = z.infer<typeof teacherFormSchema>;

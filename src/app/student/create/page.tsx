@@ -17,7 +17,7 @@ const page = async () => {
 	const tData = await prisma.teacher.findMany();
 
 	return (
-		<section className="grid h-[90dvh] place-items-center">
+		<section className="grid place-items-center">
 			<Card className="w-xs">
 				<CardHeader>
 					<CardTitle className="text-center text-2xl font-semibold">

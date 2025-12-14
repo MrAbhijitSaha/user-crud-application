@@ -27,8 +27,6 @@ const CreateStudentForm = ({ tData }: CreateStudentFormProps) => {
 		handleSubmit,
 		control,
 		formState: { isSubmitting },
-		setValue,
-		clearErrors,
 		reset,
 	} = useForm({
 		resolver: zodResolver(studentFormSchema),

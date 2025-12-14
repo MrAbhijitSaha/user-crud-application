@@ -1,4 +1,5 @@
-import prisma from "@/lib/database/dbClient";
+import DisplayStudentCard from "@/components/Card/DisplayStudentCard";
+import displayStudentAction from "@/server/displayStudentAction";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,22 +8,24 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-	const sData = await prisma.student.findMany({
-		include: {
-			teacher: true,
-		},
-	});
+	// const sData = await prisma.student.findMany({
+	// 	include: {
+	// 		teacher: true,
+	// 	},
+	// });
 
-	console.log(sData);
+	// console.log(sData);
+
+	const allStudentData = await displayStudentAction();
 
 	return (
-		<section className="grid h-[90dvh] place-items-center">
-			<div className="space-y-2 text-center">
-				<h1 className="text-5xl font-semibold">Next.js Starter Fullstack</h1>
-				<h2 className="text-3xl">
-					Production grade Fullstack Next.js starter template
-				</h2>
-			</div>
+		<section className="grid grid-cols-1 gap-4 md:grid-cols-3">
+			{allStudentData.map((data) => (
+				<DisplayStudentCard
+					key={data.id}
+					data={data}
+				/>
+			))}
 		</section>
 	);
 };
