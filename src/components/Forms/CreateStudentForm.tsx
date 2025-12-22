@@ -41,8 +41,6 @@ const CreateStudentForm = ({ tData }: CreateStudentFormProps) => {
 	});
 
 	const createStudentFormSubmitHandle = async (fData: StudentFormType) => {
-		await new Promise<void>((r) => setTimeout(r, 1500));
-
 		const { isSuccess, message } = await createStudentAction(fData);
 
 		if (isSuccess) {

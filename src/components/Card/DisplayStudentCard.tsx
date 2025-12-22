@@ -1,7 +1,7 @@
 import { MarsIcon, PencilIcon, TransgenderIcon, VenusIcon } from "lucide-react";
 import Link from "next/link";
 
-import type { DisplayStudentCard } from "@/lib/zodSchema";
+import type { DisplayStudentCardType } from "@/lib/zodSchema";
 import DeleteStudentBtn from "../DeleteStudentBtn";
 import { Avatar, AvatarFallback } from "../shadcnui/avatar";
 import { Badge } from "../shadcnui/badge";
@@ -15,12 +15,10 @@ import {
 } from "../shadcnui/card";
 
 type DisplayStudentCardPropsType = {
-	data: DisplayStudentCard;
+	data: DisplayStudentCardType;
 };
 
 const DisplayStudentCard = ({ data }: DisplayStudentCardPropsType) => {
-	console.log(data);
-
 	const initials = `${data.firstName[0]}${data.lastName[0]}`;
 
 	return (
@@ -75,7 +73,7 @@ const DisplayStudentCard = ({ data }: DisplayStudentCardPropsType) => {
 					</Link>
 				</Button>
 
-				<DeleteStudentBtn id={data.id}/>
+				<DeleteStudentBtn id={data.id} />
 			</CardFooter>
 		</Card>
 	);

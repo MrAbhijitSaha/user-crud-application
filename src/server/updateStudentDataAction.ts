@@ -32,7 +32,7 @@ const updateStudentDataAction = async ({
 
 		return {
 			isSuccess: true,
-			message: "Student Details Update Succesfully",
+			message: "Student Details Update Successfully",
 		};
 	} catch (error) {
 		console.error(error);

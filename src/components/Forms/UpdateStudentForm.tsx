@@ -54,8 +54,6 @@ const UpdateStudentForm = ({
 		gender,
 		teacherId,
 	}: StudentFormType) => {
-		await new Promise<void>((r) => setTimeout(r, 1500));
-
 		const { isSuccess, message } = await updateStudentDataAction({
 			firstName,
 			lastName,

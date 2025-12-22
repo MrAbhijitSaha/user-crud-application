@@ -17,7 +17,7 @@ export type TeacherFormType = z.infer<typeof teacherFormSchema>;
 
 export type StudentFormType = z.infer<typeof studentFormSchema>;
 
-export type DisplayStudentCard = {
+export type DisplayStudentCardType = {
 	id: string;
 	firstName: string;
 	lastName: string;

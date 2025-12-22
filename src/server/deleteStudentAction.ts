@@ -15,14 +15,14 @@ const deleteStudentAction = async (id: string) => {
 
 		return {
 			isSuccess: true,
-			message: "Student Details Deleted Succesfully",
+			message: "Student Details Deleted Successfully",
 		};
 	} catch (error) {
 		console.error(error);
 
 		return {
 			isSuccess: false,
-			message: "Student Details Deleted Failed",
+			message: "Failed to Delete Student Details",
 		};
 	}
 };
