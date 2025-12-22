@@ -8,14 +8,6 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-	// const sData = await prisma.student.findMany({
-	// 	include: {
-	// 		teacher: true,
-	// 	},
-	// });
-
-	// console.log(sData);
-
 	const allStudentData = await displayStudentAction();
 
 	return (
