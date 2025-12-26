@@ -1,5 +1,5 @@
 import DisplayStudentCard from "@/components/Card/DisplayStudentCard";
-import displayStudentAction from "@/server/displayStudentAction";
+import getAllStudents from "@/lib/database/queries/getAllStudents";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-	const allStudentData = await displayStudentAction();
+	const allStudentData = await getAllStudents(true);
 
 	return (
 		<section className="grid grid-cols-1 gap-4 md:grid-cols-3">
