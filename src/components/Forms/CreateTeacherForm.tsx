@@ -63,43 +63,49 @@ const CreateTeacherForm = () => {
 		<>
 			<form
 				onSubmit={handleSubmit(createTeacherFormSubmitHandle)}
-				className="grid grid-cols-1 gap-8"
+				className="grid grid-cols-1 gap-4"
 				noValidate>
-				<Controller
-					name="firstName"
-					control={control}
-					render={({ field, fieldState }) => (
-						<Field data-invalid={fieldState.invalid}>
-							<FieldLabel htmlFor={field.name}>First Name</FieldLabel>
-							<Input
-								{...field}
-								id={field.name}
-								aria-invalid={fieldState.invalid}
-								placeholder="Enter your first name"
-								autoComplete="given-name"
-							/>
-							{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-						</Field>
-					)}
-				/>
+				<div className="flex gap-2">
+					<Controller
+						name="firstName"
+						control={control}
+						render={({ field, fieldState }) => (
+							<Field data-invalid={fieldState.invalid}>
+								<FieldLabel htmlFor={field.name}>First Name</FieldLabel>
+								<Input
+									{...field}
+									id={field.name}
+									aria-invalid={fieldState.invalid}
+									placeholder="Enter your first name"
+									autoComplete="given-name"
+								/>
+								{fieldState.invalid && (
+									<FieldError errors={[fieldState.error]} />
+								)}
+							</Field>
+						)}
+					/>
 
-				<Controller
-					name="lastName"
-					control={control}
-					render={({ field, fieldState }) => (
-						<Field data-invalid={fieldState.invalid}>
-							<FieldLabel htmlFor={field.name}>Last Name</FieldLabel>
-							<Input
-								{...field}
-								id={field.name}
-								aria-invalid={fieldState.invalid}
-								placeholder="Enter your last name"
-								autoComplete="family-name"
-							/>
-							{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-						</Field>
-					)}
-				/>
+					<Controller
+						name="lastName"
+						control={control}
+						render={({ field, fieldState }) => (
+							<Field data-invalid={fieldState.invalid}>
+								<FieldLabel htmlFor={field.name}>Last Name</FieldLabel>
+								<Input
+									{...field}
+									id={field.name}
+									aria-invalid={fieldState.invalid}
+									placeholder="Enter your last name"
+									autoComplete="family-name"
+								/>
+								{fieldState.invalid && (
+									<FieldError errors={[fieldState.error]} />
+								)}
+							</Field>
+						)}
+					/>
+				</div>
 
 				<Button
 					className="cursor-pointer"

@@ -23,7 +23,7 @@ model Student {
   firstName String
   lastName  String
   gender    String
-  email     String
-  teacher   Teacher @relation(fields: [teacherId], references: [id])
+  email     String  @unique
+  teacher   Teacher @relation(fields: [teacherId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   teacherId String
 }

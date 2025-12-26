@@ -1,4 +1,4 @@
-import CreateStudentForm from "@/components/Forms/CreateStudentForm";
+import UpdateStudentForm from "@/components/Forms/UpdateStudentForm";
 import {
 	Card,
 	CardContent,
@@ -6,27 +6,36 @@ import {
 	CardTitle,
 } from "@/components/shadcnui/card";
 import prisma from "@/lib/database/dbClient";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-	title: "Student Create | User CRUD App",
-	description: "Student creation page of User CRUD Application",
+type PagePropsType = {
+	params: Promise<{ stuid: string }>;
 };
 
-const page = async () => {
+const page = async ({ params }: PagePropsType) => {
+	const { stuid } = await params;
+
 	const tData = await prisma.teacher.findMany();
+
+	const stuData = await prisma.student.findFirstOrThrow({
+		where: {
+			id: stuid,
+		},
+	});
 
 	return (
 		<section className="grid place-items-center">
-			<Card className="max-w-md">
+			<Card className="w-xs">
 				<CardHeader>
 					<CardTitle className="text-center text-2xl font-semibold">
-						Create Student
+						Update Student
 					</CardTitle>
 				</CardHeader>
 
 				<CardContent>
-					<CreateStudentForm tData={tData} />
+					<UpdateStudentForm
+						stuInfo={stuData}
+						tData={tData}
+					/>
 				</CardContent>
 			</Card>
 		</section>

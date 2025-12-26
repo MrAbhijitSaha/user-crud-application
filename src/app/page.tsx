@@ -1,3 +1,5 @@
+import DisplayStudentCard from "@/components/Card/DisplayStudentCard";
+import getAllStudents from "@/lib/database/queries/getAllStudents";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,15 +7,17 @@ export const metadata: Metadata = {
 	description: "Production grade Fullstack Next.js starter template",
 };
 
-const page = () => {
+const page = async () => {
+	const allStudentData = await getAllStudents(true);
+
 	return (
-		<section className="grid h-[90dvh] place-items-center">
-			<div className="space-y-2 text-center">
-				<h1 className="text-5xl font-semibold">Next.js Starter Fullstack</h1>
-				<h2 className="text-3xl">
-					Production grade Fullstack Next.js starter template
-				</h2>
-			</div>
+		<section className="grid grid-cols-1 gap-4 md:grid-cols-3">
+			{allStudentData.map((data) => (
+				<DisplayStudentCard
+					key={data.id}
+					data={data}
+				/>
+			))}
 		</section>
 	);
 };

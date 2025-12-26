@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 const page = () => {
 	return (
 		<section className="grid h-[90dvh] place-items-center">
-			<Card className="w-xs">
+			<Card className="max-w-md">
 				<CardHeader>
 					<CardTitle className="text-center text-2xl font-semibold">
 						Create Teacher
 					</CardTitle>
 				</CardHeader>
 
-				<CardContent className="space-y-8">
+				<CardContent className="space-y-4">
 					<CreateTeacherForm />
 				</CardContent>
 			</Card>
